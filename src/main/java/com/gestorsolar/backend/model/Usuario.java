@@ -29,4 +29,18 @@ public class Usuario {
 
     @Column(name = "codigo_verificacion", length = 100)
     private String codigoVerificacion;
+
+    @Column(length = 255)
+    private String nombre;
+
+    @Column(length = 100)
+    private String cargo;
+
+    @Column(length = 50)
+    private String telefono;
+
+    @Lob
+    @Column(name = "foto_base64", columnDefinition = "LONGTEXT")
+    private String fotoBase64;
 }
+
