@@ -43,4 +43,3 @@ public class Usuario {
     @Column(name = "foto_base64", columnDefinition = "LONGTEXT")
     private String fotoBase64;
 }
-
