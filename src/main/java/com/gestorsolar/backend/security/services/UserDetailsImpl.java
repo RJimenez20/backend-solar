@@ -20,12 +20,14 @@ public class UserDetailsImpl implements UserDetails {
     private String correo;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
+    private boolean verificado;
 
-    public UserDetailsImpl(Long id, String correo, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetailsImpl(Long id, String correo, String password, Collection<? extends GrantedAuthority> authorities, boolean verificado) {
         this.id = id;
         this.correo = correo;
         this.password = password;
         this.authorities = authorities;
+        this.verificado = verificado;
     }
 
     public static UserDetailsImpl build(Usuario usuario) {
@@ -35,7 +37,9 @@ public class UserDetailsImpl implements UserDetails {
                 usuario.getId(),
                 usuario.getCorreo(),
                 usuario.getContrasena(),
-                authorities);
+                authorities,
+                usuario.isVerificado()
+        );
     }
 
     @Override
@@ -70,7 +74,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true; // Simplificado por ahora mientras se prueba, pero debería ser el valor real
+        return verificado; // Simplificado por ahora mientras se prueba, pero debería ser el valor real
     }
 
     @Override
